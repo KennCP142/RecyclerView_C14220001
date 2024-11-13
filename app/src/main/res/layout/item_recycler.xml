@@ -1,6 +1,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp">
@@ -40,6 +41,18 @@
         android:layout_marginTop="20dp"
         android:text="deskripsiWayang"
         app:layout_constraintStart_toEndOf="@+id/gambarWayang"
-        app:layout_constraintTop_toBottomOf="@+id/karakterWayang" />
+        app:layout_constraintTop_toBottomOf="@+id/karakterWayang"
+        android:ellipsize="end"
+        android:maxLines="3"/>
+
+    <Button
+        android:id="@+id/btnHapus"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:text="HAPUS DATA"
+        app:layout_constraintStart_toEndOf="@+id/gambarWayang"
+        app:layout_constraintTop_toBottomOf="@+id/deskripsiWayang"
+        android:layout_marginStart="150dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

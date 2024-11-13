@@ -1,18 +1,24 @@
 package com.c14220001.recyclerview
 
 import android.annotation.SuppressLint
+import android.hardware.Camera.PictureCallback
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.squareup.picasso.Picasso
 
 private lateinit var _rvWayang : RecyclerView
 
@@ -22,7 +28,7 @@ class adapterRecView (private val listWayang : ArrayList<wayang>) : RecyclerView
         var _namaWayang = itemView.findViewById<TextView>(R.id.namaWayang)
         var _karakterWayang = itemView.findViewById<TextView>(R.id.karakterWayang)
         var _deskripsiWayang = itemView.findViewById<TextView>(R.id.deskripsiWayang)
-        //var _gambarWayang = itemView.findViewById<TextView>(R.id.gambarWayang)
+        var _gambarWayang = itemView.findViewById<ImageView>(R.id.gambarWayang)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -39,6 +45,10 @@ class adapterRecView (private val listWayang : ArrayList<wayang>) : RecyclerView
         holder._namaWayang.setText(wayang.nama)
         holder._deskripsiWayang.setText(wayang.deskripsi)
         holder._karakterWayang.setText(wayang.karakter)
+        Log.d("TEST",wayang.foto)
+        Picasso.get()
+            .load(wayang.foto)
+            .into(holder._gambarWayang)
     }
 }
 
@@ -71,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun TampilkanData() {
-        _rvWayang.layoutManager = LinearLayoutManager(this)
+        _rvWayang.layoutManager = StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL)
         _rvWayang.adapter = adapterRecView(arWayang)
     }
 
